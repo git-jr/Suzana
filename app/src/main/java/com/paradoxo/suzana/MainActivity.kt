@@ -17,6 +17,9 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
+import com.paradoxo.suzana.model.Message
+import com.paradoxo.suzana.ui.home.ChatScreen
+import com.paradoxo.suzana.ui.home.ChatScreenUiState
 import com.paradoxo.suzana.ui.theme.SuzanaTheme
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -34,15 +37,15 @@ class MainActivity : ComponentActivity() {
             val scope = rememberCoroutineScope()
 
 
-            val message by remember { mutableStateOf("") }
-            val openAiApi = OpenAiApi(token)
-            LaunchedEffect(key1 = Unit) {
-                scope.launch {
-                    delay(3000)
-                    openAiApi.getResponse("O que é Hello World?")
-                    Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
-                }
-            }
+//            val message by remember { mutableStateOf("") }
+//            val openAiApi = OpenAiApi(token)
+//            LaunchedEffect(key1 = Unit) {
+//                scope.launch {
+//                    delay(3000)
+//                    openAiApi.getResponse("O que é Hello World?")
+//                    Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+//                }
+//            }
 
             SuzanaTheme {
                 // A surface container using the 'background' color from the theme
@@ -50,7 +53,17 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    Greeting("Android")
+                    // Greeting("Android")
+
+                    ChatScreen(
+                        ChatScreenUiState(
+                            messages = listOf(
+                                Message("Olá", false),
+                                Message("Teste, olá", true),
+                                Message("Teste, 5555555555555555555555555555555555555555555555555555555555555555555555555555555555553", true),
+                            ),
+                        )
+                    )
 
                     val context = LocalContext.current
                     LaunchedEffect(key1 = Unit) {
@@ -80,3 +93,4 @@ fun GreetingPreview() {
         Greeting("Android")
     }
 }
+
