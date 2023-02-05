@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Suzana</string>
     <string name="wait_before_sen_new_message">⏳ Espere a resposta anterior para poder mandar uma nova mensagem</string>
+    <string name="error_message">Falha ao tentar conectar: </string>
 </resources>

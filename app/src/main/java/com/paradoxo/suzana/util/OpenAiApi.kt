@@ -9,13 +9,13 @@ import com.aallam.openai.client.OpenAI
 
 const val TAG = "generate response"
 
-class OpenAiApi(token: String) {
+class OpenAiApi(token: String? = null) {
     private lateinit var openAi: OpenAI
     private lateinit var model: Model
     val defaultTypetModel = "text-davinci-003"
 
     init {
-        setup(token)
+        token?.let { setup(it) }
     }
 
     private fun setup(token: String) {
@@ -27,7 +27,7 @@ class OpenAiApi(token: String) {
         val request = CompletionRequest(
             model = model.id,
             prompt = entry,
-            maxTokens = 10, // esse aqui eu vou ter que testar mais
+            maxTokens = 100, // Cada palavra tema proximadamente 4 "tokens", isso limita a reposta para evitar estourar a cota da api
             temperature = 0.9
         )
         val choiceList: List<Choice> = openAi.completion(request).choices
