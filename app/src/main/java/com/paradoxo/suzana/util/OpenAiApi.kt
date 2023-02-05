@@ -9,7 +9,7 @@ import com.aallam.openai.client.OpenAI
 
 const val TAG = "generate response"
 
-class OpenAiApi(private val token: String) {
+class OpenAiApi(token: String) {
     private lateinit var openAi: OpenAI
     private lateinit var model: Model
     val defaultTypetModel = "text-davinci-003"
@@ -27,7 +27,7 @@ class OpenAiApi(private val token: String) {
         val request = CompletionRequest(
             model = model.id,
             prompt = entry,
-            maxTokens = 100, // esse aqui eu vou ter que testar mais
+            maxTokens = 10, // esse aqui eu vou ter que testar mais
             temperature = 0.9
         )
         val choiceList: List<Choice> = openAi.completion(request).choices
@@ -35,15 +35,15 @@ class OpenAiApi(private val token: String) {
         val text = choice.text
 
         choiceList.forEach {
-            // Para a entrada: "O que é Hello World?"
+            // For entry: "O que é Hello World?"
             Log.i(
                 TAG,
                 "text ${it.text}"
-            ) // resposta: "Hello World" é um programa simples que imprime ou exibe a mensagem "Hello World" ou a frase equivalente. É frequentemente utilizado como um pedaço inicial de código para testar línguas de programação, ambientes de desenvolvimento, compiladores e programas de interpretação.
-            Log.i(TAG, "index ${it.index}") // resposta: 0
-            Log.i(TAG, "logprobs ${it.logprobs}") // resposta: null
-            Log.i(TAG, "finishReason ${it.finishReason}") // resposta: stop
+            ) // response: "Hello World" é um programa simples que imprime ou exibe a mensagem "Hello World" ou a frase equivalente. É frequentemente utilizado como um pedaço inicial de código para testar línguas de programação, ambientes de desenvolvimento, compiladores e programas de interpretação.
+            Log.i(TAG, "index ${it.index}") // response: 0
+            Log.i(TAG, "logprobs ${it.logprobs}") // response: null
+            Log.i(TAG, "finishReason ${it.finishReason}") // response: stop
         }
-        return text
+        return text.trim()
     }
 }

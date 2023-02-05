@@ -5,7 +5,6 @@ import com.paradoxo.suzana.model.Autor
 import com.paradoxo.suzana.model.Message
 
 val messageListSample = listOf(
-    Message(autor = Autor.LOAD),
     Message("Olá", Autor.USER),
     Message(LoremIpsum(2).values.first(), Autor.AI),
     Message(
