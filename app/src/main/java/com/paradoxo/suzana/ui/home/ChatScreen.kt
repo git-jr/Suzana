@@ -1,20 +1,20 @@
 package com.paradoxo.suzana.ui.home
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Send
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -32,11 +32,16 @@ import com.paradoxo.suzana.model.Message
 import com.paradoxo.suzana.ui.components.MessageItemAi
 import com.paradoxo.suzana.ui.components.MessageItemLoad
 import com.paradoxo.suzana.ui.components.MessageItemUser
+import com.paradoxo.suzana.util.messageListSample
 
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun ChatScreen(state: ChatScreenUiState, modifier: Modifier = Modifier) {
+fun ChatScreen(
+    state: ChatScreenUiState,
+    modifier: Modifier = Modifier,
+    onSendMessage: () -> Unit = {}
+) {
 
     Scaffold { paddingValues ->
         Column(modifier.padding(paddingValues)) {
@@ -64,15 +69,14 @@ fun ChatScreen(state: ChatScreenUiState, modifier: Modifier = Modifier) {
                 }
             }
             Spacer(modifier = Modifier.height(4.dp))
-            EntryTextBar(state)
-
+            EntryTextBar(state) { onSendMessage() }
         }
     }
 }
 
 @Composable
 @OptIn(ExperimentalMaterial3Api::class)
-private fun EntryTextBar(state: ChatScreenUiState) {
+private fun EntryTextBar(state: ChatScreenUiState, onClickSendMessage: () -> Unit = {}) {
     Row(
         modifier = Modifier
             .height(56.dp)
@@ -88,6 +92,8 @@ private fun EntryTextBar(state: ChatScreenUiState) {
             modifier = Modifier
                 .weight(5f)
                 .background(color = Color.Transparent),
+
+            // For future reference: I know... "use BasicText" instead od doing all that customization, but, just this time:
             colors = TextFieldDefaults.textFieldColors(
                 containerColor = Color.Transparent,
                 focusedIndicatorColor = Color.Transparent,
@@ -96,12 +102,16 @@ private fun EntryTextBar(state: ChatScreenUiState) {
             )
 
         )
-        Icon(
-            Icons.Filled.Send,
-            "menu",
-            tint = Color("#FF567AF4".toColorInt()),
-            modifier = Modifier.weight(1f)
-        )
+        IconButton(onClick = onClickSendMessage) {
+            Icon(
+                Icons.Filled.Send,
+                "send",
+                tint = Color("#FF567AF4".toColorInt()),
+                modifier = Modifier
+                    .weight(1f)
+            )
+        }
+
     }
 }
 
@@ -110,21 +120,7 @@ private fun EntryTextBar(state: ChatScreenUiState) {
 fun ChatScreenPreview() {
     ChatScreen(
         ChatScreenUiState(
-            messages = listOf(
-                Message("Olá", Autor.USER),
-                Message(LoremIpsum(2).values.first(), Autor.AI),
-                Message(
-                    LoremIpsum(13).values.first(),
-                    Autor.USER
-                ),
-                Message(LoremIpsum(14).values.last(), Autor.AI),
-                Message(
-                    LoremIpsum(10).values.first(),
-                    Autor.AI
-                ),
-                Message(autor = Autor.LOAD)
-            ),
+            messages = messageListSample,
         )
     )
 }
-

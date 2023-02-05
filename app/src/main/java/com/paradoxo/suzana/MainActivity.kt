@@ -4,12 +4,14 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -21,6 +23,7 @@ import com.paradoxo.suzana.model.Autor
 import com.paradoxo.suzana.model.Message
 import com.paradoxo.suzana.ui.home.ChatScreen
 import com.paradoxo.suzana.ui.home.ChatScreenUiState
+import com.paradoxo.suzana.ui.home.ChatViewModel
 import com.paradoxo.suzana.ui.theme.SuzanaTheme
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
@@ -56,21 +59,25 @@ class MainActivity : ComponentActivity() {
                 ) {
                     // Greeting("Android")
 
-                    ChatScreen(
-                        ChatScreenUiState(
-                            messages = listOf(
-                                Message("Olá", Autor.AI),
-                                Message("Teste, olá", Autor.USER),
-                                Message(
-                                    "Teste, 5555555555555555555555555555555555555555555555555555555555555555555555555555555555553",
-                                    Autor.AI
-                                ),
-                                Message(autor = Autor.LOAD)
-                            ),
-                        )
-                    )
+                    val viewModel by viewModels<ChatViewModel>()
+                    val state by viewModel.uiState.collectAsState()
 
-                    val context = LocalContext.current
+                    ChatScreen(state = state) {
+                        viewModel.sendMessage()
+                    }
+
+                    LaunchedEffect(state.showWaitAlert) {
+                        if (state.showWaitAlert) {
+                            Toast.makeText(
+                                context,
+                                getString(R.string.wait_before_sen_new_message),
+                                Toast.LENGTH_LONG
+                            ).show()
+                            viewModel.updateWaitAlert()
+                        }
+                    }
+
+
                     LaunchedEffect(key1 = Unit) {
                         scope.launch {
                             //delay(3000)

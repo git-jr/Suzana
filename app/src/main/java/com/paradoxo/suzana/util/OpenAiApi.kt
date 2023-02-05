@@ -1,4 +1,4 @@
-package com.paradoxo.suzana
+package com.paradoxo.suzana.util
 
 import android.util.Log
 import com.aallam.openai.api.completion.Choice
