@@ -17,6 +17,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
+import com.paradoxo.suzana.model.Autor
 import com.paradoxo.suzana.model.Message
 import com.paradoxo.suzana.ui.home.ChatScreen
 import com.paradoxo.suzana.ui.home.ChatScreenUiState
@@ -58,9 +59,13 @@ class MainActivity : ComponentActivity() {
                     ChatScreen(
                         ChatScreenUiState(
                             messages = listOf(
-                                Message("Olá", false),
-                                Message("Teste, olá", true),
-                                Message("Teste, 5555555555555555555555555555555555555555555555555555555555555555555555555555555555553", true),
+                                Message("Olá", Autor.AI),
+                                Message("Teste, olá", Autor.USER),
+                                Message(
+                                    "Teste, 5555555555555555555555555555555555555555555555555555555555555555555555555555555555553",
+                                    Autor.AI
+                                ),
+                                Message(autor = Autor.LOAD)
                             ),
                         )
                     )
