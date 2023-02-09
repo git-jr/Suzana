@@ -2,4 +2,13 @@
     <string name="app_name">Suzana</string>
     <string name="wait_before_sen_new_message">⏳ Espere a resposta anterior para poder mandar uma nova mensagem</string>
     <string name="error_message">Falha ao tentar conectar: </string>
+    <string name="digite_sua_api_key">Digite sua api key</string>
+    <string name="manda_ai">Manda aí!</string>
+    <string name="aviso_1_acesso_api_key">Para que o app possa funcionar é necessário digitar uma chave de acesso/api key</string>
+    <string name="aviso_2_acesso_api_key">Você pode gerar uma chave rapidamente através do site oficial da OpenAI, dona do ChatGPT</string>
+    <string name="aviso_3_acesso_api_key">Sua chave será usada somente durante a sessão e NÃO ficará armazenada conosco</string>
+    <string name="gerar_chave_no_site_oficial">Gerar chave no site oficial</string>
+    <string name="digite_api_key">Digite api key</string>
+    <string name="cancelar">Cancelar</string>
+    <string name="salvar">Salvar</string>
 </resources>

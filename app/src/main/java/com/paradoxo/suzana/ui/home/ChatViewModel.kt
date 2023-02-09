@@ -1,13 +1,11 @@
 package com.paradoxo.suzana.ui.home
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.paradoxo.suzana.model.Autor
 import com.paradoxo.suzana.model.Message
 import com.paradoxo.suzana.util.OpenAiApi
 import com.paradoxo.suzana.util.messageListSample
-import io.ktor.utils.io.printStack
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

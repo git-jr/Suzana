@@ -15,6 +15,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
@@ -42,7 +43,7 @@ fun MessageItemUser(value: String) {
                 value,
                 Modifier
                     .background(
-                        color = Color("#FF567AF4".toColorInt()),
+                        color = MaterialTheme.colorScheme.primary,
                         shape = RoundedCornerShape(25.dp, 25.dp, 0.dp, 25.dp)
                     )
                     .padding(16.dp),
@@ -66,7 +67,7 @@ fun MessageItemAi(value: String) {
                     value,
                     Modifier
                         .background(
-                            color = Color("#FFE9EFFD".toColorInt()),
+                            color = MaterialTheme.colorScheme.tertiary,
                             shape = RoundedCornerShape(0.dp, 25.dp, 25.dp, 25.dp)
                         )
                         .padding(16.dp),

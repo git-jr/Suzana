@@ -9,7 +9,6 @@ import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
-import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -20,7 +19,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
-import com.paradoxo.suzana.ui.home.AlertDialogAPIKey
+import com.paradoxo.suzana.ui.components.AlertDialogAPIKey
 import com.paradoxo.suzana.ui.home.ChatScreen
 import com.paradoxo.suzana.ui.home.ChatViewModel
 import com.paradoxo.suzana.ui.theme.SuzanaTheme
