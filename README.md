@@ -10,6 +10,7 @@ Essa chave tem uma cota diária de uso, então limitei o tamanho das respostas a
 
 <img src="https://user-images.githubusercontent.com/35709152/216869895-f58e5dc6-0c06-4459-acbb-941760815425.gif" alt = "gif demo app" width="300">
 
+<a href='https://play.google.com/store/apps/details?id=com.paradoxo.suzana'><img alt='Disponível no Google Play' src='https://play.google.com/intl/pt-BR/badges/images/generic/pt-br_badge_web_generic.png' width="250px"/></a>
 
 [Documentação API ChatGPT][docgpt] 
 
@@ -19,8 +20,5 @@ API Kotlin:
 
 [openai-kotlin]: https://github.com/Aallam/openai-kotlin
 [MouaadAallam]: https://github.com/Aallam
-
-
 [generateKey]: https://platform.openai.com/account/api-keys
-
 [docgpt]: https://platform.openai.com/docs/libraries/community-libraries
